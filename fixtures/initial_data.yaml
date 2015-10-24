@@ -1,0 +1,13 @@
+- model: user_management.Location
+  pk: 1
+  fields:
+    zip_code: 14057
+    location: 52.5094, 13.2848
+
+- model: user_management.UserProfile
+  pk: 1
+  fields:
+    username: John Lennon
+    email_address: johnlennon@example.com
+    mobility: 20
+    location_id: 1
