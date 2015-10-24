@@ -8,7 +8,7 @@ from user_management.views import UserProfilesViewset
 admin.autodiscover()
 
 router = routers.SimpleRouter()
-router.register(r'bill-board/requests', RequestsViewset)
+router.register(r'bill_board/requests', RequestsViewset)
 router.register(r'user_management/users', UserProfilesViewset)
 
 def bad(request):

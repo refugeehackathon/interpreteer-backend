@@ -4,10 +4,24 @@
     zip_code: 14057
     location: 52.5094, 13.2848
 
+- model: user_management.Location
+  pk: 2
+  fields:
+    zip_code: 10179
+    location: 52.5136, 13.4232
+
 - model: user_management.UserProfile
   pk: 1
   fields:
-    username: John Lennon
-    email_address: johnlennon@example.com
+    username: Trans Lator
+    email: translator@example.com
     mobility: 20
     location_id: 1
+
+- model: user_management.UserProfile
+  pk: 2
+  fields:
+    username: Jane Helper
+    email: jane.helper@example.com
+    mobility: 30
+    location_id: 2
