@@ -59,6 +59,8 @@ INSTALLED_APPS = (
     'rest_auth.registration',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+    'rest_framework_swagger',
+    
     # Application base, containing global templates.
     'base',
 
