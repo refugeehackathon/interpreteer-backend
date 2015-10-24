@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, UserManager, BaseUserManager
 from geoposition.fields import GeopositionField
 
 
@@ -8,6 +8,22 @@ class Location(models.Model):
     location = GeopositionField()
     zip_code = models.CharField(max_length=5)
 
+
+class UserManager(BaseUserManager):
+     
+    def create_user(self, username, email_address, password=None):
+        user  = self.model(username=username,
+                           email_address=self.normalize_email(email_address),
+                           )
+        user.set_password(password)
+        user.save()
+        return user
+    
+    def create_superuser(self, username, email_address, password=None):
+        user = self.create_user(username, email_address, password)
+        user.is_superuser = True
+        user.save()
+        return user
 
 class UserProfile(AbstractBaseUser):
     username = models.CharField(max_length=40, unique=True)
@@ -21,8 +37,10 @@ class UserProfile(AbstractBaseUser):
     def get_short_name(self):
         return self.username
 
+    objects = UserManager()
+
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email_address', 'zip_code']
+    REQUIRED_FIELDS = ['email_address']
 
 
 class Language(models.Model):
