@@ -36,5 +36,9 @@ django-debug-toolbar
 djangorestframework
 django-filter 
 
+# REST Framework Authentication
+django-allauth
+django-rest-auth
+
 # Position storing
 django-geoposition

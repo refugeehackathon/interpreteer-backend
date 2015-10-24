@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.syndication',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # Third-party apps, patches, fixes
     'djcelery',
@@ -51,6 +52,13 @@ INSTALLED_APPS = (
     'compressor',
     'geoposition',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
     # Application base, containing global templates.
     'base',
 
@@ -58,6 +66,8 @@ INSTALLED_APPS = (
     'user_management',
     'bill_board',
 )
+
+SITE_ID = 1
 
 # Place bcrypt first in the list, so it will be the default password hashing
 # mechanism
@@ -69,6 +79,14 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.SHA1PasswordHasher',
     'django.contrib.auth.hashers.MD5PasswordHasher',
     'django.contrib.auth.hashers.CryptPasswordHasher',
+)
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 # Sessions
