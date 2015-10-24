@@ -87,3 +87,8 @@ LOGGING = {
 }
 
 INTERNAL_IPS = ('127.0.0.1')
+
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+print("------ DATABASE -----")
+print(dj_database_url.config())
