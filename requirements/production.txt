@@ -31,5 +31,10 @@ django-debug-toolbar
 # Feature testing
 #django-waffle
 
+# rest framework
+# http://www.django-rest-framework.org/#installation
+djangorestframework
+django-filter 
+
 # Position storing
 django-geoposition

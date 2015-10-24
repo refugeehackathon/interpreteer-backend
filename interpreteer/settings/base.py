@@ -50,7 +50,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'compressor',
     'geoposition',
-
+    'rest_framework',
     # Application base, containing global templates.
     'base',
 
