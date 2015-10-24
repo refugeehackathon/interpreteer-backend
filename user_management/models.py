@@ -1,18 +1,30 @@
 from django.conf import settings
 from django.db import models
+from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from geoposition.fields import GeopositionField
 from celery.worker.strategy import default
-from django.utils import timezone
-
+import requests
 
 class Location(models.Model):
     location = GeopositionField()
     zip_code = models.CharField(max_length=5)
 
+def query_zip_code(sender, instance, **kwargs):
+    if not instance.zip_code.isdigit():
+        return
+    r = requests.get('http://api.zippopotam.us/de/%s' % instance.zip_code)
+    if r.status_code == 200:
+        result = r.json()['places'][0]
+        instance.location.longitude = result['longitude']
+        instance.location.latitude = result['latitude']
+        instance.save()
+
+post_save.connect(query_zip_code, sender=Location, dispatch_uid="query_zip_code")
+
 
 class UserManager(BaseUserManager):
-     
+
     def create_user(self, username, email, password=None):
         user  = self.model(username=username,
                            email=self.normalize_email(email),
@@ -20,7 +32,7 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save()
         return user
-    
+
     def create_superuser(self, username, email, password=None):
         user = self.create_user(username, email, password)
         user.is_superuser = True
@@ -71,6 +83,3 @@ class LanguageSkill(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="language_skills")
     language = models.ForeignKey(Language, related_name="language_skills")
     level = models.CharField(max_length=255, choices=settings.LANGUAGE_LEVELS)
-
-
-

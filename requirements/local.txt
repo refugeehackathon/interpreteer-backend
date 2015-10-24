@@ -19,3 +19,4 @@ pyflakes
 pylint
 pyyaml
 django-toolbelt
+requests
