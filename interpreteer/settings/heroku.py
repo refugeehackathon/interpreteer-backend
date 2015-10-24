@@ -4,34 +4,15 @@ These settings overrides what's in settings/base.py
 """
 
 from . import base
-print('---- USING LOCAL -----')
+import os
+import dj_database_url
+print('---- USING HEROKU -----')
 
 
 # To extend any settings from settings/base.py here's an example.
 # If you don't need to extend any settings from base.py, you do not need
 # to import base above
 INSTALLED_APPS = base.INSTALLED_APPS + ('django_nose',)
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db/development.sqlite3',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-        #'OPTIONS': {
-        #    'init_command': 'SET storage_engine=InnoDB',
-        #    'charset' : 'utf8',
-        #    'use_unicode' : True,
-        #},
-        #'TEST_CHARSET': 'utf8',
-        #'TEST_COLLATION': 'utf8_general_ci',
-    },
-    # 'slave': {
-    #     ...
-    # },
-}
 
 # Recipients of traceback emails and other notifications.
 ADMINS = (
@@ -88,3 +69,21 @@ LOGGING = {
 }
 
 INTERNAL_IPS = ('127.0.0.1')
+
+DATABASES = {'default': dj_database_url.config()}
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
