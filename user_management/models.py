@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, UserManager, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from geoposition.fields import GeopositionField
+from celery.worker.strategy import default
 
 
 class Location(models.Model):
@@ -25,11 +26,15 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
-class UserProfile(AbstractBaseUser):
+class UserProfile(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=40, unique=True)
-    email_address = models.EmailField(unique=True)
+    email = models.EmailField(unique=True)
     mobility = models.PositiveIntegerField(blank=True, null=True)  # range of mobility in km
     location = models.ForeignKey(Location, related_name="users", null=True)
+    first_name = models.CharField(max_length=255, blank=True)
+    last_name = models.CharField(max_length=255, blank=True)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
     def get_full_name(self):
         return self.username
