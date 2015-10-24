@@ -6,6 +6,7 @@ repo. If you need to override a setting locally, use local.py
 import os
 import logging
 
+from django.utils.translation import ugettext_lazy as _
 # Normally you should not import ANYTHING from Django directly
 # into your settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
@@ -48,12 +49,14 @@ INSTALLED_APPS = (
     'djcelery',
     'debug_toolbar',
     'compressor',
+    'geoposition',
 
     # Application base, containing global templates.
     'base',
 
     # Local apps, referenced via appname
     'user_management',
+    'bill_board',
 )
 
 # Place bcrypt first in the list, so it will be the default password hashing
@@ -297,6 +300,13 @@ LOGGING = {
         }
     }
 }
+
+LANGUAGE_LEVELS = (
+    ("mother_tongue", _("Mother tongue")),
+    ("business_fluent", _("Business fluent")),
+    ("fluent", _("Fluent")),
+    ("basic", _("Basic")),
+)
 
 # Common Event Format logging parameters
 #CEF_PRODUCT = 'interpreteer'

@@ -30,3 +30,6 @@ django-debug-toolbar
 
 # Feature testing
 #django-waffle
+
+# Position storing
+django-geoposition
