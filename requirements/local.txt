@@ -18,3 +18,4 @@ pep8
 pyflakes
 pylint
 pyyaml
+django-toolbelt

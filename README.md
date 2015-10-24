@@ -1,9 +1,11 @@
 
-# The Interpreteer Project #
+# interpreteer #
 
 ## About ##
 
-Describe your project here.
+Helps bringing newcomers, translators and interpreters together.
+
+volunteer + interpreter = interpreteer!
 
 ## Prerequisites ##
 
@@ -13,12 +15,9 @@ Describe your project here.
 
 ## Installation ##
 
-Fill out with installation instructions for your project.
-
-
-License
--------
-This software is licensed under the [New BSD License][BSD]. For more
-information, read the file ``LICENSE``.
-
-[BSD]: http://opensource.org/licenses/BSD-3-Clause
+``` bash
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py loaddata fixtures/seed #load seed data
+python manage.py runserver
+```
