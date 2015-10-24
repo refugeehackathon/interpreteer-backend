@@ -12,16 +12,16 @@ class Location(models.Model):
 
 class UserManager(BaseUserManager):
      
-    def create_user(self, username, email_address, password=None):
+    def create_user(self, username, email, password=None):
         user  = self.model(username=username,
-                           email_address=self.normalize_email(email_address),
+                           email=self.normalize_email(email),
                            )
         user.set_password(password)
         user.save()
         return user
     
-    def create_superuser(self, username, email_address, password=None):
-        user = self.create_user(username, email_address, password)
+    def create_superuser(self, username, email, password=None):
+        user = self.create_user(username, email, password)
         user.is_superuser = True
         user.save()
         return user
@@ -45,7 +45,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email_address']
+    REQUIRED_FIELDS = ['email']
 
 
 class Language(models.Model):
