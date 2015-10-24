@@ -19,3 +19,4 @@ pyflakes
 pylint
 pyyaml
 dj_database_url
+dj_static
