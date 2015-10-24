@@ -2,7 +2,12 @@
 
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
+from rest_framework import routers
+from bill_board.views import RequestsViewset
 admin.autodiscover()
+
+router = routers.SimpleRouter()
+router.register(r'bill-board/requests', RequestsViewset)
 
 
 def bad(request):
@@ -17,6 +22,9 @@ urlpatterns = patterns('',
     url(r'^bad/$', bad),
     url(r'', include('base.urls')),
     url(r'^api-auth/', include('rest_framework.urls',
-                               namespace='rest_framework'))
+                               namespace='rest_framework')),
+    
 )
+
+urlpatterns += router.urls
 
