@@ -48,7 +48,7 @@ INSTALLED_APPS = (
     'djcelery',
     'debug_toolbar',
     'compressor',
-
+    'rest_framework',
     # Application base, containing global templates.
     'base',
 
