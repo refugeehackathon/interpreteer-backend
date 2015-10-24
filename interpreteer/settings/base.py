@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'base',
 
     # Local apps, referenced via appname
+    'user_management',
 )
 
 # Place bcrypt first in the list, so it will be the default password hashing
@@ -202,7 +203,7 @@ DEBUG_TOOLBAR_CONFIG = {
 # )
 
 # Specify a custom user model to use
-#AUTH_USER_MODEL = 'accounts.MyUser'
+AUTH_USER_MODEL = 'user_management.UserProfile'
 
 FILE_UPLOAD_PERMISSIONS = 0o0664
 
