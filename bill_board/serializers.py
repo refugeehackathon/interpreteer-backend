@@ -1,12 +1,7 @@
 from rest_framework import serializers
 from .models import Request
 from user_management.models import Language, Location
-
-
-class LocationSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Location
+from user_management.serializers import LocationSerializer
 
 
 class RequestSerializer(serializers.ModelSerializer):
