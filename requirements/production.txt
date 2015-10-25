@@ -14,10 +14,6 @@ bleach
 # Logging
 #raven
 
-# Celery: Message queue
-celery
-django-celery
-
 # L10n/i18n
 #Babel
 #-e git://github.com/clouserw/tower.git#egg=tower
