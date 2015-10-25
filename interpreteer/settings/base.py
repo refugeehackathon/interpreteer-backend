@@ -47,7 +47,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
 
     # Third-party apps, patches, fixes
-    'djcelery',
     'debug_toolbar',
     'compressor',
     'geoposition',

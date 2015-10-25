@@ -30,7 +30,7 @@ class RequestSerializer(serializers.ModelSerializer):
         fields = ('id', 'required_language', 'known_languages', 'direction',
                   'direction_display', 'user', 'location',
                   'kind', 'kind_display', 'title', 'description', 'start_time',
-                  'duration', 'requires_presence', )
+                  'end_time', 'requires_presence', )
 
     def create_location(self, validated_data):
         return Location.objects.create(**validated_data)
@@ -54,7 +54,7 @@ class OfferSerializer(serializers.ModelSerializer):
         model = Request
         fields = ('id', 'user', 'location',
                   'kind', 'kind_display', 'start_time',
-                  'duration', )
+                  'end_time', )
 
     def create_location(self, validated_data):
         return Location.objects.create(**validated_data)

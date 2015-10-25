@@ -49,8 +49,8 @@
 - model: bill_board.Offer
   pk: 1
   fields:
-    duration: '00:30:00'
     kind: 0
     location: 2
     start_time: '2015-10-29 11:00:00+00:00'
+    end_time: '2015-10-29 12:00:00+00:00'
     user: 2
