@@ -8,18 +8,6 @@ import os
 import dj_database_url
 print('---- USING HEROKU -----')
 
-
-# To extend any settings from settings/base.py here's an example.
-# If you don't need to extend any settings from base.py, you do not need
-# to import base above
-INSTALLED_APPS = base.INSTALLED_APPS + ('django_nose',)
-
-# Recipients of traceback emails and other notifications.
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-)
-MANAGERS = ADMINS
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CACHES = {
@@ -28,18 +16,7 @@ CACHES = {
     }
 }
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# Debugging displays nice error messages, but leaks memory. Set this to False
-# on all server instances and True only for development.
-DEBUG = TEMPLATE_DEBUG = True
 
-# Is this a development instance? Set this to True on development/master
-# instances and False on stage/prod.
-DEV = True
-
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Hardcoded values can leak through source control. Consider loading
@@ -54,19 +31,6 @@ SECRET_KEY = 'b#+udjc5l&58dv4i(bv0=#g9ufwz!lmhmb#(n!@jp8xg($26^d'
 # BROKER_PASSWORD = 'django'
 # BROKER_VHOST = 'django'
 # CELERY_RESULT_BACKEND = 'amqp'
-
-## Log settings
-
-# Remove this configuration variable to use your custom logging configuration
-LOGGING_CONFIG = None
-LOGGING = {
-    'version': 1,
-    'loggers': {
-        'interpreteer': {
-            'level': "DEBUG"
-        }
-    }
-}
 
 INTERNAL_IPS = ('127.0.0.1')
 
