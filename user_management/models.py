@@ -48,7 +48,7 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=255, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(auto_now_add=True)
+    date_joined = models.DateTimeField(blank=True, null=True)
 
     def get_full_name(self):
         return self.username
@@ -63,14 +63,11 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
 
 class Language(models.Model):
-    """
-    To fill the databse with languages run "python manage.py add_langs_to_db"
-    """
     language_code = models.CharField(max_length=255, unique=True, choices=settings.LANGUAGES)
 
     def __str__(self):
         return self.language_code
-    
+
 
 class TranslationSkill(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="translation_skills")
