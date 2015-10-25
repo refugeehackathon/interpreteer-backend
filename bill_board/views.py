@@ -17,12 +17,11 @@ class RequestsViewset(ModelViewSet):
         instance = serializer.save(user_id=1)
         #instance = serializer.save(user=self.request.user)
         return instance
-    
+
     @detail_route(['GET'])
     def matchings(self, request, pk):
         obj = self.get_object()
-        # TODO: call obj.get_mactchings() to get offers
-        matchings = Offer.objects.all()
+        matchings = obj.matching_offers()
         return Response(OfferSerializer(matchings, many=True).data)
 
 
