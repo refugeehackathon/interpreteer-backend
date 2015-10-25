@@ -13,15 +13,44 @@
 - model: user_management.UserProfile
   pk: 1
   fields:
-    username: Trans Lator
+    date_joined: 2015-10-24 21:46:38.742902+00:00
     email: translator@example.com
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: null
+    last_name: ''
+    location: 1
     mobility: 20
-    location_id: 1
+    password: ''
+    user_permissions: []
+    username: Trans Lator
 
 - model: user_management.UserProfile
   pk: 2
   fields:
-    username: Jane Helper
+    date_joined: 2015-10-24 21:46:38.742902+00:00
     email: jane.helper@example.com
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: null
+    last_name: ''
+    location: 2
     mobility: 30
-    location_id: 2
+    password: ''
+    user_permissions: []
+    username: Jane Helper
+
+- model: bill_board.Offer
+  pk: 1
+  fields:
+    duration: '00:30:00'
+    kind: 0
+    location: 2
+    start_time: '2015-10-29 11:00:00+00:00'
+    user: 2

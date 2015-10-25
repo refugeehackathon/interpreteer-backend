@@ -3,13 +3,14 @@
 from django.conf.urls import include, patterns, url
 from django.contrib import admin
 from rest_framework import routers
-from bill_board.views import RequestsViewset
+from bill_board.views import RequestsViewset, OffersViewset
 from user_management.views import UserProfilesViewset, FacebookLogin
 admin.autodiscover()
 
 router = routers.SimpleRouter()
-router.register(r'bill_board/requests', RequestsViewset)
-router.register(r'user_management/users', UserProfilesViewset)
+router.register(r'offers', OffersViewset)
+router.register(r'requests', RequestsViewset)
+router.register(r'users', UserProfilesViewset)
 
 def bad(request):
     """ Simulates a server error """
