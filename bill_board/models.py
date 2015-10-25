@@ -39,7 +39,8 @@ class Request(models.Model):
     def matching_offers(self):
         offers = Offer.objects.filter(
             start_time__lte=self.start_time,
-            end_time__gte=self.end_time)
+            end_time__gte=self.end_time,
+            kind=self.kind)
         if self.direction == 0:
             offers = offers.filter(
                 user__translation_skills__source_language=self.required_language
