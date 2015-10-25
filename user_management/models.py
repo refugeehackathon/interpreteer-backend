@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import pre_save
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from geoposition.fields import GeopositionField
 from celery.worker.strategy import default
@@ -18,9 +18,8 @@ def query_zip_code(sender, instance, **kwargs):
         result = r.json()['places'][0]
         instance.location.longitude = result['longitude']
         instance.location.latitude = result['latitude']
-        instance.save()
 
-post_save.connect(query_zip_code, sender=Location, dispatch_uid="query_zip_code")
+pre_save.connect(query_zip_code, sender=Location, dispatch_uid="query_zip_code")
 
 
 class UserManager(BaseUserManager):
