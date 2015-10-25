@@ -350,11 +350,14 @@ CORS_ALLOW_METHODS = (
     'OPTIONS'
 )
 
+CORS_ALLOW_CREDENTIALS = True
+
 CORS_ALLOW_HEADERS = (
     'x-requested-with',
     'content-type',
     'accept',
     'origin',
     'authorization',
-    'x-csrftoken'
+    'x-csrftoken',
+    'Access-Control-Allow-Credentials',
 )
