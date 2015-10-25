@@ -16,7 +16,7 @@ CACHES = {
     }
 }
 
-
+DEBUG = TEMPLATE_DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Hardcoded values can leak through source control. Consider loading
