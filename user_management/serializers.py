@@ -8,3 +8,5 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
+        exclude = ('password', 'is_active', 'user_permissions', 'groups',
+            'last_login', 'is_superuser', 'is_staff')
