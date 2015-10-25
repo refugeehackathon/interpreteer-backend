@@ -21,3 +21,4 @@ pyyaml
 django-toolbelt
 requests
 django-rest-swagger
+django-shell-plus
