@@ -54,3 +54,25 @@
     start_time: '2015-10-29 11:00:00+00:00'
     end_time: '2015-10-29 12:00:00+00:00'
     user: 2
+
+- model: bill_board.request
+  pk: 1
+  fields:
+    description: Test
+    direction: 0
+    end_time: 2015-10-29 11:30:00+00:00
+    kind: 0
+    known_languages: [2]
+    location: 4
+    required_language: 14
+    requires_presence: true
+    start_time: 2015-10-29 11:00:00+00:00
+    title: Test
+    user: 1
+
+- model: user_management.translationskill
+  pk: 1
+  fields:
+    destination_language: 2
+    source_language: 14
+    user: 1
