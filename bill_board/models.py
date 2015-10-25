@@ -42,9 +42,28 @@ class Request(models.Model):
             end_time__gte=self.end_time)
         if self.direction == 0:
             offers = offers.filter(
-                user__translation_skills__source_language=self.required_language,
+                user__translation_skills__source_language=self.required_language
+            ).filter(
                 user__translation_skills__destination_language_id__in=self.known_languages.values('id')
             )
+        elif self.direction == 1:
+            offers = offers.filter(
+                user__translation_skills__source_language__in=self.known_languages.values('id')
+            ).filter(
+                user__translation_skills__destination_language_id=self.required_language
+            )
+        elif self.direction == 2:
+            offers_1 = offers.filter(
+                user__translation_skills__source_language=self.required_language
+            ).filter(
+                user__translation_skills__destination_language_id__in=self.known_languages.values('id')
+            )
+            offers_2 = offers.filter(
+                user__translation_skills__source_language__in=self.known_languages.values('id')
+            ).filter(
+                user__translation_skills__destination_language_id=self.required_language
+            )
+            offers = offers_1 & offers_2
         return offers
 
 
@@ -56,3 +75,6 @@ class Offer(models.Model):
     description = models.TextField(blank=True)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
+
+    def __str__(self):
+        return "<Offer: %s, %s, %s, %s>" % (self.user.username, self.start_time, self.end_time, self.kind)
