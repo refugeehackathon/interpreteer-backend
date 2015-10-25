@@ -70,6 +70,36 @@
     title: Test
     user: 2
 
+- model: bill_board.request
+  pk: 2
+  fields:
+    title: Übersetzung Bafög-Antrag
+    description: 10117 Berlin
+    direction: 2
+    start_time: 2015-10-29 13:00:00+01:00
+    end_time: 2015-10-29 14:30:00+01:00
+    kind: 0
+    known_languages: [29, 16]
+    location: 1
+    required_language: 14
+    requires_presence: true
+    user: 2
+
+- model: bill_board.request
+  pk: 3
+  fields:
+    title: Unterstützung Elternabend (Kindergarten)
+    description: 14478 Potsdam
+    direction: 2
+    start_time: 2015-10-30 10:00:00+01:00
+    end_time: 2015-10-29 11:00:00+01:00
+    kind: 0
+    known_languages: [10, 20]
+    location: 1
+    required_language: 14
+    requires_presence: true
+    user: 2
+
 - model: user_management.translationskill
   pk: 1
   fields:
