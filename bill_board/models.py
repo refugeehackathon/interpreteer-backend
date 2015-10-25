@@ -30,7 +30,7 @@ class Request(models.Model):
     description = models.TextField(blank=True)
     location = models.ForeignKey(Location, related_name="requests")
     start_time = models.DateTimeField()
-    duration = models.DurationField()
+    end_time = models.DateTimeField()
     requires_presence = models.BooleanField()
 
 
@@ -38,6 +38,5 @@ class Offer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="offers")
     location = models.ForeignKey(Location, related_name="offers")
     start_time = models.DateTimeField()
-    duration = models.DurationField()
+    end_time = models.DateTimeField()
     kind = models.IntegerField(choices=TYPE_CHOICES)
-
