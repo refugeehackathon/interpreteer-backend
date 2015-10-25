@@ -3,7 +3,7 @@ This is an example settings/local.py file.
 These settings overrides what's in settings/base.py
 """
 
-from . import base
+from .base import *
 import os
 import dj_database_url
 print('---- USING HEROKU -----')
