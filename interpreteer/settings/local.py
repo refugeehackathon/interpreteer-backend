@@ -4,6 +4,7 @@ These settings overrides what's in settings/base.py
 """
 
 from . import base
+import os
 print('---- USING LOCAL -----')
 
 
@@ -88,3 +89,4 @@ LOGGING = {
 }
 
 INTERNAL_IPS = ('127.0.0.1')
+# COMPRESS_ROOT = os.path.join(BASE_DIR, 'media')

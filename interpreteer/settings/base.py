@@ -5,6 +5,7 @@ repo. If you need to override a setting locally, use local.py
 
 import os
 import logging
+print('----- USING BASE -------')
 
 from django.utils.translation import ugettext_lazy as _
 # Normally you should not import ANYTHING from Django directly
@@ -60,7 +61,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'rest_framework_swagger',
-    
+
     # Application base, containing global templates.
     'base',
 
