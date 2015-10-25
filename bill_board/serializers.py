@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Request
+from .models import Request, Offer
 from user_management.models import Language, Location
 from user_management.serializers import LocationSerializer
 
@@ -46,7 +46,7 @@ class OfferSerializer(serializers.ModelSerializer):
     kind_display = serializers.CharField(source='get_kind_display',
                                          read_only=True)
     class Meta:
-        model = Request
+        model = Offer
         fields = ('id', 'user', 'location',
                   'kind', 'kind_display', 'start_time',
                   'end_time', )
