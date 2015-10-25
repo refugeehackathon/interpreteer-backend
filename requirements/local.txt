@@ -20,3 +20,4 @@ pylint
 pyyaml
 django-toolbelt
 requests
+django_rest_swagger
