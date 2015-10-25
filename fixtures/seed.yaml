@@ -51,8 +51,8 @@
   fields:
     kind: 0
     location: 2
-    start_time: '2015-10-29 11:00:00+00:00'
-    end_time: '2015-10-29 12:00:00+00:00'
+    start_time: 2015-10-29 11:00:00+01:00
+    end_time: 2015-10-29 12:00:00+01:00
     user: 1
 
 - model: bill_board.request
@@ -60,8 +60,8 @@
   fields:
     description: Test
     direction: 0
-    start_time: 2015-10-29 11:00:00+00:00
-    end_time: 2015-10-29 11:30:00+00:00
+    start_time: 2015-10-29 11:00:00+01:00
+    end_time: 2015-10-29 11:30:00+01:00
     kind: 0
     known_languages: [2]
     location: 1

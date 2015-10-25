@@ -33,6 +33,20 @@ class Request(models.Model):
     end_time = models.DateTimeField()
     requires_presence = models.BooleanField()
 
+    def __str__(self):
+        return "<Request: %s, %s, %s, %s>" % (self.user.username, self.start_time, self.end_time, self.kind)
+
+    def matching_offers(self):
+        offers = Offer.objects.filter(
+            start_time__lte=self.start_time,
+            end_time__gte=self.end_time)
+        if self.direction == 0:
+            offers = offers.filter(
+                user__translation_skills__source_language=self.required_language,
+                user__translation_skills__destination_language_id__in=self.known_languages.values('id')
+            )
+        return offers
+
 
 class Offer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="offers")
