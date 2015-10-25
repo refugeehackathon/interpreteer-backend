@@ -11,7 +11,9 @@ class RequestsViewset(ModelViewSet):
         '''
         Set User as creator
         '''
-        instance = serializer.save(user=self.request.user)
+        # set fake user:
+        instance = serializer.save(user_id=1)
+        #instance = serializer.save(user=self.request.user)
         return instance
 
 class OffersViewset(ModelViewSet):
@@ -22,5 +24,7 @@ class OffersViewset(ModelViewSet):
         '''
         Set User as creator
         '''
-        instance = serializer.save(user=self.request.user)
+        # set fake user:
+        instance = serializer.save(user_id=2)
+        #instance = serializer.save(user=self.request.us.user)
         return instance
