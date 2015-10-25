@@ -1,16 +1,8 @@
-"""
-This is an example settings/local.py file.
-These settings overrides what's in settings/base.py
-"""
 
 from . import base
 import os
 print('---- USING LOCAL -----')
 
-
-# To extend any settings from settings/base.py here's an example.
-# If you don't need to extend any settings from base.py, you do not need
-# to import base above
 INSTALLED_APPS = base.INSTALLED_APPS + ('django_nose',)
 
 DATABASES = {
@@ -21,24 +13,8 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '',
-        #'OPTIONS': {
-        #    'init_command': 'SET storage_engine=InnoDB',
-        #    'charset' : 'utf8',
-        #    'use_unicode' : True,
-        #},
-        #'TEST_CHARSET': 'utf8',
-        #'TEST_COLLATION': 'utf8_general_ci',
     },
-    # 'slave': {
-    #     ...
-    # },
 }
-
-# Recipients of traceback emails and other notifications.
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-)
-MANAGERS = ADMINS
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -66,17 +42,7 @@ ALLOWED_HOSTS = []
 # the secret key from an environment variable or a file instead.
 SECRET_KEY = 'b#+udjc5l&58dv4i(bv0=#g9ufwz!lmhmb#(n!@jp8xg($26^d'
 
-# Uncomment these to activate and customize Celery:
-# CELERY_ALWAYS_EAGER = False  # required to activate celeryd
-# BROKER_HOST = 'localhost'
-# BROKER_PORT = 5672
-# BROKER_USER = 'django'
-# BROKER_PASSWORD = 'django'
-# BROKER_VHOST = 'django'
-# CELERY_RESULT_BACKEND = 'amqp'
-
 ## Log settings
-
 # Remove this configuration variable to use your custom logging configuration
 LOGGING_CONFIG = None
 LOGGING = {
@@ -89,4 +55,3 @@ LOGGING = {
 }
 
 INTERNAL_IPS = ('127.0.0.1')
-# COMPRESS_ROOT = os.path.join(BASE_DIR, 'media')

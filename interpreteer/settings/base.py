@@ -8,8 +8,6 @@ import logging
 print('----- USING BASE -------')
 
 from django.utils.translation import ugettext_lazy as _
-# Normally you should not import ANYTHING from Django directly
-# into your settings, but ImproperlyConfigured is an exception.
 from django.core.exceptions import ImproperlyConfigured
 
 
@@ -206,25 +204,6 @@ DEBUG_TOOLBAR_CONFIG = {
     'ENABLE_STACKTRACES': True,
 }
 
-# Uncomment the following setting if you get an ImportError such as:
-#   ImproperlyConfigured: The included urlconf projectname.urls doesn't have any patterns in it
-# See:
-# http://stackoverflow.com/questions/20963856/improperlyconfigured-the-included-urlconf-project-urls-doesnt-have-any-patte/21005346#21005346
-# http://django-debug-toolbar.readthedocs.org/en/1.0/installation.html#explicit-setup
-#DEBUG_TOOLBAR_PATCH_SETTINGS = False
-
-# DEBUG_TOOLBAR_PANELS = (
-#     #'debug_toolbar_user_panel.panels.UserPanel',
-#     'debug_toolbar.panels.version.VersionDebugPanel',
-#     'debug_toolbar.panels.timer.TimerDebugPanel',
-#     'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
-#     'debug_toolbar.panels.headers.HeaderDebugPanel',
-#     'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
-#     'debug_toolbar.panels.template.TemplateDebugPanel',
-#     'debug_toolbar.panels.sql.SQLDebugPanel',
-#     'debug_toolbar.panels.signals.SignalDebugPanel',
-#     'debug_toolbar.panels.logger.LoggingPanel',
-# )
 
 # Specify a custom user model to use
 AUTH_USER_MODEL = 'user_management.UserProfile'
@@ -234,30 +213,6 @@ FILE_UPLOAD_PERMISSIONS = 0o0664
 # The WSGI Application to use for runserver
 WSGI_APPLICATION = 'interpreteer.wsgi.application'
 
-# Define your database connections
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-        #'OPTIONS': {
-        #    'init_command': 'SET storage_engine=InnoDB',
-        #    'charset' : 'utf8',
-        #    'use_unicode' : True,
-        #},
-        #'TEST_CHARSET': 'utf8',
-        #'TEST_COLLATION': 'utf8_general_ci',
-    },
-    # 'slave': {
-    #     ...
-    # },
-}
-
-# Uncomment this and set to all slave DBs in use on the site.
-# SLAVE_DATABASES = ['slave']
 
 # Recipients of traceback emails and other notifications.
 ADMINS = (
@@ -328,9 +283,3 @@ LANGUAGE_LEVELS = (
     ("fluent", _("Fluent")),
     ("basic", _("Basic")),
 )
-
-# Common Event Format logging parameters
-#CEF_PRODUCT = 'interpreteer'
-#CEF_VENDOR = 'Your Company'
-#CEF_VERSION = '0'
-#CEF_DEVICE_VERSION = '0'
