@@ -1,6 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
 from .serializers import RequestSerializer, OfferSerializer
 from .models import Request, Offer
+from rest_framework.decorators import detail_route
 
 
 class RequestsViewset(ModelViewSet):
@@ -15,6 +17,14 @@ class RequestsViewset(ModelViewSet):
         instance = serializer.save(user_id=1)
         #instance = serializer.save(user=self.request.user)
         return instance
+    
+    @detail_route(['GET'])
+    def matchings(self, request, pk):
+        obj = self.get_object()
+        # TODO: call obj.get_mactchings() to get offers
+        matchings = Offer.objects.all()
+        return Response(OfferSerializer(matchings, many=True).data)
+
 
 class OffersViewset(ModelViewSet):
     queryset = Offer.objects.all()
