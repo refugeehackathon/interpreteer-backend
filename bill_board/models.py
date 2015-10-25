@@ -37,6 +37,8 @@ class Request(models.Model):
 class Offer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="offers")
     location = models.ForeignKey(Location, related_name="offers")
+    kind = models.IntegerField(choices=TYPE_CHOICES)
+    title = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
-    kind = models.IntegerField(choices=TYPE_CHOICES)
