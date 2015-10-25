@@ -38,3 +38,6 @@ django-rest-auth
 
 # Position storing
 django-geoposition
+
+# cross origin requests
+django-cors-headers

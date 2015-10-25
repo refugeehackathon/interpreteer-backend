@@ -60,6 +60,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.facebook',
     'rest_framework_swagger',
     'shell_plus',
+    'corsheaders',
 
     # Application base, containing global templates.
     'base',
@@ -160,6 +161,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 TEMPLATE_CONTEXT_PROCESSORS = [
@@ -333,3 +336,25 @@ LANGUAGE_LEVELS = (
 #CEF_VENDOR = 'Your Company'
 #CEF_VERSION = '0'
 #CEF_DEVICE_VERSION = '0'
+
+
+# Cross Origin Requests
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ALLOW_METHODS = (
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS'
+)
+
+CORS_ALLOW_HEADERS = (
+    'x-requested-with',
+    'content-type',
+    'accept',
+    'origin',
+    'authorization',
+    'x-csrftoken'
+)

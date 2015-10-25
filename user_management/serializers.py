@@ -1,12 +1,19 @@
 from rest_framework import serializers
-from .models import UserProfile, LanguageSkill, Language
-from bill_board.serializers import LocationSerializer
+from .models import UserProfile, LanguageSkill, Language, Location
+
+
+class LocationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Location
 
 
 class LanguageSkillSerializer(serializers.ModelSerializer):
-    language = serializers.SlugRelatedField(slug_field='language_code',
-                                            queryset=Language.objects.all()) 
-    class Meta: 
+    language = serializers.SlugRelatedField(
+        slug_field='language_code', read_only=True
+    )
+
+    class Meta:
         model = LanguageSkill
         fields = ('id', 'language', 'level')
 
