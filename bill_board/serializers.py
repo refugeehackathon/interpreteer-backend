@@ -7,7 +7,6 @@ class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Location
-        exclude = ('id',)
 
 
 class RequestSerializer(serializers.ModelSerializer):
