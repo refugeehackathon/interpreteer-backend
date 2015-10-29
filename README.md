@@ -20,6 +20,7 @@ http://www.interpreteer.de/
 ``` bash
 pip install -r requirements.txt
 python manage.py migrate
+python manage.py add_langs_to_db
 python manage.py loaddata fixtures/seed #load seed data
 python manage.py runserver
 ```
