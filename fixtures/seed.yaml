@@ -10,6 +10,12 @@
     zip_code: 10179
     location: 52.5136, 13.4232
 
+- model: user_management.Location
+  pk: 3
+  fields:
+    zip_code: 10553
+    location: 52.5291, 13.3246
+
 - model: user_management.UserProfile
   pk: 1
   fields:
@@ -46,6 +52,24 @@
     user_permissions: []
     username: Jane Helper
 
+- model: user_management.UserProfile
+  pk: 3
+  fields:
+    date_joined: 2015-11-02 10:00:00.742902+00:00
+    email: john.newcomer@example.com
+    first_name: 'John'
+    last_name: 'Newcomer'
+    username: John Newcomer
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: null
+    location: 3
+    mobility: 40
+    password: ''
+    user_permissions: []
+
 - model: bill_board.Offer
   pk: 1
   fields:
@@ -53,6 +77,24 @@
     location: 2
     start_time: 2015-10-29 11:00:00+01:00
     end_time: 2015-10-29 12:00:00+01:00
+    user: 1
+
+- model: bill_board.Offer
+  pk: 2
+  fields:
+    kind: 0
+    location: 2
+    start_time: 2015-11-5 11:00:00+01:00
+    end_time: 2015-11-5 12:00:00+01:00
+    user: 1
+
+- model: bill_board.Offer
+  pk: 3
+  fields:
+    kind: 0
+    location: 2
+    start_time: 2015-11-12 11:00:00+01:00
+    end_time: 2015-11-12 12:00:00+01:00
     user: 1
 
 - model: bill_board.request
@@ -99,6 +141,21 @@
     required_language: 14
     requires_presence: true
     user: 2
+
+- model: bill_board.request
+  pk: 4
+  fields:
+    title: Need help in the super market
+    description: 10553 Berlin
+    direction: 2
+    start_time: 2015-10-30 10:00:00+01:00
+    end_time: 2015-10-29 11:00:00+01:00
+    kind: 0
+    known_languages: [2, 16]
+    location: 1
+    required_language: 14
+    requires_presence: true
+    user: 3
 
 - model: user_management.translationskill
   pk: 1
