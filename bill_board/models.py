@@ -31,7 +31,7 @@ class Request(models.Model):
     location = models.ForeignKey(Location, related_name="requests")
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
-    requires_presence = models.BooleanField()
+    requires_presence = models.BooleanField(default=False)
 
     def __str__(self):
         return "<Request: %s, %s, %s, %s>" % (self.user.username, self.start_time, self.end_time, self.kind)

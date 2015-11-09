@@ -6,20 +6,10 @@ from geoposition.fields import GeopositionField
 
 import requests
 
+
 class Location(models.Model):
     location = GeopositionField()
     zip_code = models.CharField(max_length=5)
-
-def query_zip_code(sender, instance, **kwargs):
-    if not instance.zip_code.isdigit():
-        return
-    r = requests.get('http://api.zippopotam.us/de/%s' % instance.zip_code)
-    if r.status_code == 200:
-        result = r.json()['places'][0]
-        instance.location.longitude = result['longitude']
-        instance.location.latitude = result['latitude']
-
-pre_save.connect(query_zip_code, sender=Location, dispatch_uid="query_zip_code")
 
 
 class UserManager(BaseUserManager):

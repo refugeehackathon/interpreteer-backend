@@ -1,4 +1,6 @@
 from rest_framework import serializers
+
+from user_management.utils import query_zip_code
 from .models import Request, Offer
 from user_management.models import Language, Location
 from user_management.serializers import LocationSerializer
@@ -28,6 +30,8 @@ class RequestSerializer(serializers.ModelSerializer):
                   'end_time', 'requires_presence', )
 
     def create_location(self, validated_data):
+        if validated_data["location"] is None:
+            validated_data["location"] = query_zip_code(validated_data["zip_code"])
         return Location.objects.create(**validated_data)
 
     def create(self, validated_data):
