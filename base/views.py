@@ -14,3 +14,6 @@ def offers(request):
 
 def requests(request):
     return render(request, 'requests.html')
+
+def matchingOffers(request):
+    return render(request, 'matching_offers.html')
