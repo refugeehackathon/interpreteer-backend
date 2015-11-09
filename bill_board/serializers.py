@@ -53,7 +53,7 @@ class OfferSerializer(serializers.ModelSerializer):
         model = Offer
         fields = ('id', 'user', 'location',
                   'kind', 'kind_display', 'start_time',
-                  'end_time', )
+                  'end_time', 'title', 'description',)
 
     def create_location(self, validated_data):
         return Location.objects.create(**validated_data)
