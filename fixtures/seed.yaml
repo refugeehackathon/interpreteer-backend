@@ -73,6 +73,8 @@
 - model: bill_board.Offer
   pk: 1
   fields:
+    title: Übersetzung von Dokumenten nach Deutsch (A3)
+    description: Ich beherrsche Deutsch mit Qualifikation A3 und biete Übersetzung von Dokumenten an.
     kind: 0
     location: 2
     start_time: 2015-10-29 11:00:00+01:00
@@ -82,6 +84,8 @@
 - model: bill_board.Offer
   pk: 2
   fields:
+    title: Hilfe bei Behördengängen
+    description: Biete Hilfe auf dem Amt.
     kind: 0
     location: 2
     start_time: 2015-11-5 11:00:00+01:00
@@ -91,6 +95,8 @@
 - model: bill_board.Offer
   pk: 3
   fields:
+    title: Einkaufen
+    description: Ich helfe euch gern beim Einkaufen im deutschen Supermarkt.
     kind: 0
     location: 2
     start_time: 2015-11-12 11:00:00+01:00
