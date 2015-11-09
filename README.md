@@ -11,7 +11,7 @@ http://www.interpreteer.de/
 
 ## Prerequisites ##
 
-- Python 2.7, 3.4 recommended
+- Python 2.7
 - pip
 - virtualenv (virtualenvwrapper is recommended for use during development)
 
