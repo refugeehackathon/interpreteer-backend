@@ -4,13 +4,14 @@ from django.conf.urls import include, patterns, url
 from django.contrib import admin
 from rest_framework import routers
 from bill_board.views import RequestsViewset, OffersViewset
-from user_management.views import UserProfilesViewset, FacebookLogin
+from user_management.views import UserProfilesViewset, FacebookLogin, LanguagesViewset
 admin.autodiscover()
 
 router = routers.SimpleRouter()
 router.register(r'api/offers', OffersViewset)
 router.register(r'api/requests', RequestsViewset)
 router.register(r'api/users', UserProfilesViewset)
+router.register(r'api/languages', LanguagesViewset)
 
 def bad(request):
     """ Simulates a server error """

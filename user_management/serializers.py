@@ -7,6 +7,10 @@ class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
 
+class LanguagesSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Language
 
 class LanguageSkillSerializer(serializers.ModelSerializer):
     language = serializers.SlugRelatedField(
@@ -26,7 +30,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         exclude = ('password', 'is_active', 'user_permissions', 'groups',
             'last_login', 'is_superuser', 'is_staff', 'first_name',
             'last_name')
-        
+
     def update(self, instance, validated_data):
         language_data = validated_data.pop('language_skills')
         if language_data:
@@ -41,7 +45,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
                 obj.save()
             # remove deleted languages
             instance.language_skills.exclude(language__in=active_languages).delete()
-            
+
         location_data = validated_data.pop('location')
         if location_data:
             # TODO: change location data
