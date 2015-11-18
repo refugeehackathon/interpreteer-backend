@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from .serializers import RequestSerializer, OfferSerializer
 from .models import Request, Offer
 from rest_framework.decorators import detail_route
+from rest_framework.exceptions import NotAuthenticated
 
 
 class RequestsViewset(ModelViewSet):
@@ -10,12 +11,10 @@ class RequestsViewset(ModelViewSet):
     serializer_class = RequestSerializer
 
     def perform_create(self, serializer):
-        '''
-        Set User as creator
-        '''
-        # set fake user:
-        instance = serializer.save(user_id=1)
-        #instance = serializer.save(user=self.request.user)
+        if not self.request.user.is_authenticated():
+            raise NotAuthenticated()
+
+        instance = serializer.save(user=self.request.user)
         return instance
 
     @detail_route(['GET'])
@@ -30,10 +29,8 @@ class OffersViewset(ModelViewSet):
     serializer_class = OfferSerializer
 
     def perform_create(self, serializer):
-        '''
-        Set User as creator
-        '''
-        # set fake user:
-        instance = serializer.save(user_id=2)
-        #instance = serializer.save(user=self.request.us.user)
+        if not self.request.user.is_authenticated():
+            raise NotAuthenticated()
+
+        instance = serializer.save(user=self.request.us.user)
         return instance
