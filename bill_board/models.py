@@ -37,10 +37,11 @@ class Request(models.Model):
         return "<Request: %s, %s, %s, %s>" % (self.user.username, self.start_time, self.end_time, self.kind)
 
     def matching_offers(self):
-        offers = Offer.objects.filter(
-            start_time__lte=self.start_time,
-            end_time__gte=self.end_time,
-            kind=self.kind)
+        offers = Offer.objects.filter(kind=self.kind)
+        if self.start_time is not None and self.end_time is not None:
+            offers = offers.filter(
+                start_time__lte=self.start_time,
+                end_time__gte=self.end_time)
         if self.direction == 0:
             offers = offers.filter(
                 user__translation_skills__source_language=self.required_language
