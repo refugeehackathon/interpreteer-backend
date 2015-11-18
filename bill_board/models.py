@@ -29,18 +29,19 @@ class Request(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     location = models.ForeignKey(Location, related_name="requests")
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    start_time = models.DateTimeField(blank=True, null=True)
+    end_time = models.DateTimeField(blank=True, null=True)
     requires_presence = models.BooleanField(default=False)
 
     def __str__(self):
         return "<Request: %s, %s, %s, %s>" % (self.user.username, self.start_time, self.end_time, self.kind)
 
     def matching_offers(self):
-        offers = Offer.objects.filter(
-            start_time__lte=self.start_time,
-            end_time__gte=self.end_time,
-            kind=self.kind)
+        offers = Offer.objects.filter(kind=self.kind)
+        if self.start_time is not None and self.end_time is not None:
+            offers = offers.filter(
+                start_time__lte=self.start_time,
+                end_time__gte=self.end_time)
         if self.direction == 0:
             offers = offers.filter(
                 user__translation_skills__source_language=self.required_language
@@ -74,8 +75,8 @@ class Offer(models.Model):
     kind = models.IntegerField(choices=TYPE_CHOICES)
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    start_time = models.DateTimeField(blank=True, null=True)
+    end_time = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return "<Offer: %s, %s, %s, %s>" % (self.user.username, self.start_time, self.end_time, self.kind)
