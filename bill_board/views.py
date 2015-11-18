@@ -32,5 +32,5 @@ class OffersViewset(ModelViewSet):
         if not self.request.user.is_authenticated():
             raise NotAuthenticated()
 
-        instance = serializer.save(user=self.request.us.user)
+        instance = serializer.save(user=self.request.user)
         return instance
