@@ -29,8 +29,8 @@ class Request(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     location = models.ForeignKey(Location, related_name="requests")
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    start_time = models.DateTimeField(blank=True, null=True)
+    end_time = models.DateTimeField(blank=True, null=True)
     requires_presence = models.BooleanField(default=False)
 
     def __str__(self):
@@ -74,8 +74,8 @@ class Offer(models.Model):
     kind = models.IntegerField(choices=TYPE_CHOICES)
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
+    start_time = models.DateTimeField(blank=True, null=True)
+    end_time = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return "<Offer: %s, %s, %s, %s>" % (self.user.username, self.start_time, self.end_time, self.kind)
