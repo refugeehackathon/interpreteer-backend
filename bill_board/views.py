@@ -22,11 +22,18 @@ class TimeRangeFilter(df.Filter):
     """
     Expects a comma separated list of iso-8601 datetime
     """        
+    def __init__(self, *args, **kwargs):
+        self.within = kwargs.pop('within', True)
+        df.Filter.__init__(self, *args, **kwargs)
+    
     def filter(self, qs, value):
         begin, end = value.split(',')
         begin = parse_datetime(begin)
         end = parse_datetime(end)
-        qs = qs.filter(start_time__gte=begin, end_time__lte=end)
+        if self.within:
+            qs = qs.filter(start_time__lte=begin, end_time__gte=end)
+        else:
+            qs = qs.filter(start_time__gte=begin, end_time__lte=end)
         return qs
 
 
@@ -35,7 +42,7 @@ class RequestsFilter(df.FilterSet):
     direction = df.ChoiceFilter(choices=DIRECTION_CHOICES)
     known_languages = KnownLanguageFilter()
     required_language = df.CharFilter(name='required_language__language_code')
-    time_range = TimeRangeFilter()
+    time_range = TimeRangeFilter(within=False)
     
     class Meta:
         model = Request
@@ -64,9 +71,33 @@ class RequestsViewset(ModelViewSet):
         return Response(OfferSerializer(matchings, many=True).data)
 
 
+class KnownLanguageOfferFilter(df.Filter):
+    """
+    Expects a comma separated list of language codes
+    """
+    def filter(self, qs, value):
+        return qs.filter(user__translation_skills__source_language__language_code__in=value.split(','))
+
+
+class OffersFilter(df.FilterSet):
+    kind = df.ChoiceFilter(choices=TYPE_CHOICES)
+    time_range = TimeRangeFilter(within=True)
+    required_language = df.CharFilter(
+        name='user__translation_skills__destination_language__language_code'
+    )
+    known_languages = KnownLanguageOfferFilter()
+    
+    class Meta:
+        model = Offer
+        fields = ['kind', 'time_range', 'required_language', 'known_languages']
+
+
 class OffersViewset(ModelViewSet):
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
+    # TODO: This should be move to settings
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_class = OffersFilter
 
     def perform_create(self, serializer):
         if not self.request.user.is_authenticated():
