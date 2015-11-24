@@ -13,9 +13,6 @@ class RequestSerializer(serializers.ModelSerializer):
     known_languages = serializers.SlugRelatedField(
         slug_field='language_code', queryset=Language.objects.all(), many=True
     )
-    user = serializers.SlugRelatedField(
-        slug_field='username', read_only=True
-    )
     location = LocationSerializer()
     kind_display = serializers.CharField(source='get_kind_display',
                                          read_only=True)
@@ -43,9 +40,6 @@ class RequestSerializer(serializers.ModelSerializer):
         return serializers.ModelSerializer.create(self, validated_data)
 
 class OfferSerializer(serializers.ModelSerializer):
-    user = serializers.SlugRelatedField(
-        slug_field='username', read_only=True
-    )
     location = LocationSerializer()
     kind_display = serializers.CharField(source='get_kind_display',
                                          read_only=True)
