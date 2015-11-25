@@ -140,7 +140,7 @@
     description: 14478 Potsdam
     direction: 2
     start_time: 2015-10-30 10:00:00+01:00
-    end_time: 2015-10-29 11:00:00+01:00
+    end_time: 2015-10-30 11:00:00+01:00
     kind: 0
     known_languages: [10, 20]
     location: 1
@@ -155,7 +155,7 @@
     description: 10553 Berlin
     direction: 2
     start_time: 2015-10-30 10:00:00+01:00
-    end_time: 2015-10-29 11:00:00+01:00
+    end_time: 2015-10-30 11:00:00+01:00
     kind: 0
     known_languages: [2, 16]
     location: 1

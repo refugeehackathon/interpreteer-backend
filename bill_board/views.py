@@ -2,14 +2,19 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from .serializers import RequestSerializer, OfferSerializer
 from .models import Request, Offer
+from .filters import RequestsFilter, OffersFilter
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import NotAuthenticated
+from rest_framework import filters
 
 
 class RequestsViewset(ModelViewSet):
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
-
+    # TODO: This should be move to settings
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_class = RequestsFilter
+    
     def perform_create(self, serializer):
         if not self.request.user.is_authenticated():
             raise NotAuthenticated()
@@ -27,6 +32,9 @@ class RequestsViewset(ModelViewSet):
 class OffersViewset(ModelViewSet):
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
+    # TODO: This should be move to settings
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_class = OffersFilter
 
     def perform_create(self, serializer):
         if not self.request.user.is_authenticated():
