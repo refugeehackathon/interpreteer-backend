@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/refugeehackathon/interpreteer-backend.svg)](https://travis-ci.org/refugeehackathon/interpreteer-backend)
 
 # interpreteer #
 
