@@ -5,6 +5,8 @@ import os
 try:
     if "heroku" in os.environ.get('DJANGO_SETTINGS_MODULE'):
         from .heroku import *
+    elif "production" in os.environ.get('DJANGO_SETTINGS_MODULE'):
+        from .production import *
     else:
         from .local import *
 except ImportError as exc:

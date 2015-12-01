@@ -1,16 +1,12 @@
 
 from . import base
 import os
-print('---- USING LOCAL -----')
-
-INSTALLED_APPS = base.INSTALLED_APPS + ('django_nose',)
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.spatialite',
-        'NAME': 'db/development.sqlite3',
-        'USER': '',
-        'PASSWORD': '',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis', #'django.db.backends.sqlite3',
+        'NAME': 'interpreteer',
+        'USER': 'postgres',
         'HOST': '',
         'PORT': '',
     },
@@ -23,10 +19,6 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
-
-# TODO: Change this to you local requirement
-# path to local libstpatiallite.so 
-SPATIALITE_LIBRARY_PATH='/home/illing/workspace/geodjango/lib/libspatialite.so'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Debugging displays nice error messages, but leaks memory. Set this to False
