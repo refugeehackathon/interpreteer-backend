@@ -1,5 +1,5 @@
 import requests
-from geoposition import Geoposition
+from django.contrib.gis.geos import fromstr
 
 
 def query_zip_code(zip_code):
@@ -8,4 +8,4 @@ def query_zip_code(zip_code):
     r = requests.get('http://api.zippopotam.us/de/%s' % zip_code)
     if r.status_code == 200:
         result = r.json()['places'][0]
-        return Geoposition(result['latitude'], result['longitude'])
+        return fromstr("POINT(%s %s)" % (result['longitude'], result['latitude']))

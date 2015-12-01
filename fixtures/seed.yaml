@@ -2,19 +2,19 @@
   pk: 1
   fields:
     zip_code: 14057
-    location: 52.5094, 13.2848
+    location: SRID=4326;POINT (13.2848 52.5094)
 
 - model: user_management.Location
   pk: 2
   fields:
     zip_code: 10179
-    location: 52.5136, 13.4232
+    location: SRID=4326;POINT (13.4232 52.5136)
 
 - model: user_management.Location
   pk: 3
   fields:
     zip_code: 10553
-    location: 52.5291, 13.3246
+    location: SRID=4326;POINT (13.3246 52.5291)
 
 - model: user_management.UserProfile
   pk: 1

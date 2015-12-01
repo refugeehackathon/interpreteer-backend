@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.syndication',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.gis',
 
     # Third-party apps, patches, fixes
     'debug_toolbar',
