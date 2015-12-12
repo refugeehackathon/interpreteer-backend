@@ -13,7 +13,6 @@ class RequestSerializer(serializers.ModelSerializer):
     known_languages = serializers.SlugRelatedField(
         slug_field='language_code', queryset=Language.objects.all(), many=True
     )
-    location = LocationSerializer()
     kind_display = serializers.CharField(source='get_kind_display',
                                          read_only=True)
     direction_display = serializers.CharField(source='get_direction_display',
@@ -40,7 +39,6 @@ class RequestSerializer(serializers.ModelSerializer):
         return serializers.ModelSerializer.create(self, validated_data)
 
 class OfferSerializer(serializers.ModelSerializer):
-    location = LocationSerializer()
     kind_display = serializers.CharField(source='get_kind_display',
                                          read_only=True)
     class Meta:

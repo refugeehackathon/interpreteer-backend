@@ -14,7 +14,7 @@ class RequestsViewset(ModelViewSet):
     # TODO: This should be move to settings
     filter_backends = (filters.DjangoFilterBackend,)
     filter_class = RequestsFilter
-    
+
     def perform_create(self, serializer):
         if not self.request.user.is_authenticated():
             raise NotAuthenticated()
