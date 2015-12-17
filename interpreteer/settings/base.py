@@ -51,19 +51,12 @@ INSTALLED_APPS = (
     'compressor',
     'geoposition',
     'rest_framework',
-    'rest_framework.authtoken',
-    'rest_auth',
-    'allauth',
-    'allauth.account',
-    'rest_auth.registration',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
+    'oauth2_provider',
+    'social.apps.django_app.default',
+    'rest_framework_social_oauth2',
     'rest_framework_swagger',
     'shell_plus',
     'corsheaders',
-
-    # Application base, containing global templates.
-    'base',
 
     # Local apps, referenced via appname
     'user_management',
@@ -85,12 +78,34 @@ PASSWORD_HASHERS = (
 )
 
 AUTHENTICATION_BACKENDS = (
+    # Facebook OAuth2
+    'social.backends.facebook.FacebookAppOAuth2',
+    'social.backends.facebook.FacebookOAuth2',
+
+    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+        'rest_framework_social_oauth2.authentication.SocialAuthentication',
+    )
+}
+
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope'}
+}
+
+PROPRIETARY_BACKEND_NAME = 'Interpreteer'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '#YOUR FACEBOOK APP KEY'
+SOCIAL_AUTH_FACEBOOK_SECRET = '#YOUR FACEBOOK APP SECRET'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 # Sessions
 #
@@ -176,6 +191,8 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     'django.core.context_processors.csrf',
     'django.core.context_processors.tz',
     'django.contrib.messages.context_processors.messages',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 ]
 
 TEMPLATE_DIRS = (
