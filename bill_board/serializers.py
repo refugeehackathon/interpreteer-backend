@@ -31,9 +31,6 @@ class RequestSerializer(serializers.ModelSerializer):
         return Location.objects.create(**validated_data)
 
     def create(self, validated_data):
-        location_data = validated_data.pop('location')
-        location = self.create_location(location_data)
-        validated_data['location_id'] = location.id
         # TODO: get from logged in user
         # validated_data['user_id'] = 1
         return serializers.ModelSerializer.create(self, validated_data)
@@ -51,9 +48,6 @@ class OfferSerializer(serializers.ModelSerializer):
         return Location.objects.create(**validated_data)
 
     def create(self, validated_data):
-        location_data = validated_data.pop('location')
-        location = self.create_location(location_data)
-        validated_data['location_id'] = location.id
         # TODO: get from logged in user
         # validated_data['user_id'] = 1
         return serializers.ModelSerializer.create(self, validated_data)
