@@ -3,9 +3,12 @@ from .models import UserProfile, LanguageSkill, Language, Location
 
 
 class LocationSerializer(serializers.ModelSerializer):
+    latitude = serializers.FloatField()
+    longitude = serializers.FloatField()
 
     class Meta:
         model = Location
+        fields = ('id', 'latitude', 'longitude', 'zip_code')
 
 class LanguagesSerializer(serializers.ModelSerializer):
 

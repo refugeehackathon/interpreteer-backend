@@ -11,6 +11,12 @@ class Location(models.Model):
     location = GeopositionField()
     zip_code = models.CharField(max_length=5)
 
+    def longitude(self):
+        return self.location.longitude
+
+    def latitude(self):
+        return self.location.latitude
+
 
 class UserManager(BaseUserManager):
 

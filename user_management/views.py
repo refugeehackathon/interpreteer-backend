@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
-from .serializers import UserProfileSerializer, LanguagesSerializer
-from .models import UserProfile, Language
+from .serializers import UserProfileSerializer, LanguagesSerializer, LocationSerializer
+from .models import UserProfile, Language, Location
 
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
@@ -18,3 +18,7 @@ class FacebookLogin(SocialLoginView):
 class LanguagesViewset(ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguagesSerializer
+
+class LocationsViewset(ModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
