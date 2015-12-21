@@ -25,16 +25,6 @@ class RequestSerializer(serializers.ModelSerializer):
                   'kind', 'kind_display', 'title', 'description', 'start_time',
                   'end_time', 'requires_presence', )
 
-    def create_location(self, validated_data):
-        if validated_data["location"] is None:
-            validated_data["location"] = query_zip_code(validated_data["zip_code"])
-        return Location.objects.create(**validated_data)
-
-    def create(self, validated_data):
-        # TODO: get from logged in user
-        # validated_data['user_id'] = 1
-        return serializers.ModelSerializer.create(self, validated_data)
-
 class OfferSerializer(serializers.ModelSerializer):
     kind_display = serializers.CharField(source='get_kind_display',
                                          read_only=True)
@@ -43,11 +33,3 @@ class OfferSerializer(serializers.ModelSerializer):
         fields = ('id', 'user', 'location',
                   'kind', 'kind_display', 'start_time',
                   'end_time', 'title', 'description',)
-
-    def create_location(self, validated_data):
-        return Location.objects.create(**validated_data)
-
-    def create(self, validated_data):
-        # TODO: get from logged in user
-        # validated_data['user_id'] = 1
-        return serializers.ModelSerializer.create(self, validated_data)
