@@ -2,7 +2,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from .serializers import RequestSerializer, OfferSerializer
 from .models import Request, Offer
-from .filters import RequestsFilter, OffersFilter
+from .filters import RequestsFilter, OffersFilter, DistanceFilter
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import NotAuthenticated
 from rest_framework import filters
@@ -12,7 +12,8 @@ class RequestsViewset(ModelViewSet):
     queryset = Request.objects.all()
     serializer_class = RequestSerializer
     # TODO: This should be move to settings
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = (filters.DjangoFilterBackend, DistanceFilter)
+    filter_fields = ('location',)
     filter_class = RequestsFilter
 
     def perform_create(self, serializer):
@@ -33,7 +34,8 @@ class OffersViewset(ModelViewSet):
     queryset = Offer.objects.all()
     serializer_class = OfferSerializer
     # TODO: This should be move to settings
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = (filters.DjangoFilterBackend, DistanceFilter)
+    filter_fields = ('location',)
     filter_class = OffersFilter
 
     def perform_create(self, serializer):

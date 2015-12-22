@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 
 # Create your models here.
-from user_management.models import Language, Location
+from user_management.models import Language
 
 
 DIRECTION_CHOICES = (
@@ -28,7 +28,6 @@ class Request(models.Model):
     kind = models.IntegerField(choices=TYPE_CHOICES)
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
-    location = models.ForeignKey(Location, related_name="requests")
     start_time = models.DateTimeField(blank=True, null=True)
     end_time = models.DateTimeField(blank=True, null=True)
     requires_presence = models.BooleanField(default=False)
@@ -71,7 +70,6 @@ class Request(models.Model):
 
 class Offer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="offers")
-    location = models.ForeignKey(Location, related_name="offers")
     kind = models.IntegerField(choices=TYPE_CHOICES)
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)

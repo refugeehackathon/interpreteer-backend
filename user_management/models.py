@@ -2,21 +2,15 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-from geoposition.fields import GeopositionField
+from django.contrib.gis.geos import Point
 
 import requests
 
 
 class Location(models.Model):
-    location = GeopositionField()
+    latitude = models.FloatField()
+    longitude = models.FloatField()
     zip_code = models.CharField(max_length=5)
-
-    def longitude(self):
-        return self.location.longitude
-
-    def latitude(self):
-        return self.location.latitude
-
 
 class UserManager(BaseUserManager):
 

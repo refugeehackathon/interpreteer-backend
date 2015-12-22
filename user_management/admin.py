@@ -3,11 +3,12 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from .models import UserProfile, Language, LanguageSkill, TranslationSkill
+from .models import UserProfile, Language, LanguageSkill, TranslationSkill, Location
 
 admin.site.register(Language, admin.ModelAdmin)
 admin.site.register(LanguageSkill, admin.ModelAdmin)
 admin.site.register(TranslationSkill, admin.ModelAdmin)
+admin.site.register(Location, admin.ModelAdmin)
 
 
 class UserCreationForm(forms.ModelForm):
@@ -81,4 +82,3 @@ class UserProfileAdmin(UserAdmin):
 
 # Now register the new UserAdmin...
 admin.site.register(UserProfile, UserProfileAdmin)
-

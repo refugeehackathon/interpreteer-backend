@@ -30,7 +30,7 @@ django-debug-toolbar
 # rest framework
 # http://www.django-rest-framework.org/#installation
 djangorestframework
-django-filter 
+django-filter
 
 # REST Framework Authentication
 django-allauth
